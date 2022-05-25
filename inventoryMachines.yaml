@@ -1,9 +1,9 @@
 ---
-- name: Create file
+- name: Machine inventory
   hosts: all
   gather_facts: yes
   tasks:
-    - name: Create file file.csv
+    - name: Generate CSV file
       become: yes
       lineinfile:
         path: "/tmp/file.csv"
