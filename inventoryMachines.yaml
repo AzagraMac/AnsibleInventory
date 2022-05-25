@@ -1,0 +1,11 @@
+---
+- name: Create file
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Create file file.csv
+      become: yes
+      lineinfile:
+        path: "/tmp/file.csv"
+        line: '{{ansible_hostname}},{{ansible_default_ipv4.address}},{{ansible_distribution}},{{ansible_kernel}}'
+        create: true
