@@ -1,5 +1,5 @@
 # AnsibleInventory
-Inventory of machines with ansible
+Inventory of machines with ansible to CSV file
 
 
 #### Output
