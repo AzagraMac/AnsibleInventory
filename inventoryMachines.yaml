@@ -6,10 +6,15 @@
     - name: Fetch Java version
       shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
       register: java_version
+      
+    - name: Fetch Tomcat version
+      become: yes
+      shell: sh /opt/tomcat/bin/version.sh | grep "Server number" | awk '{print $3}'
+      register: tomcat_version
 
     - name: Generate CSV file
       become: yes
       lineinfile:
         path: "/tmp/file.csv"
-        line: '{{ansible_hostname}},{{ansible_default_ipv4.address}},{{ansible_distribution}},{{ansible_kernel}},{{java_version.stdout}}'
+        line: '{{ansible_hostname}},{{ansible_default_ipv4.address}},{{ansible_distribution}},{{ansible_kernel}},{{java_version.stdout}},{{tomcat_version.stdout}}'
         create: true
